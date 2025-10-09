@@ -52,27 +52,19 @@ class StreamController < ApplicationController
     { error: "metrics_error", timestamp: Time.current.utc.iso8601 }
   end
 
-  def last_seen_column
-    @last_seen_column ||= begin
-      if ActiveRecord::Base.connection.column_exists?(:sessions, :last_seen)
-        "last_seen"
-      else
-        "updated_at"
-      end
-    rescue => e
-      Rails.logger.error "[Stream] column check failed: #{e.class}: #{e.message}"
-      "updated_at"
-    end
-  end
-
   def safe_active_user_count
-    # col = last_seen_column
-    # Session.where("#{col} > ?", 30.seconds.ago).count
-    Session.where(last_seen_column => 30.seconds.ago..).count
+    # Use updated_at since your schema doesn't have last_seen column
+    Session.where(updated_at: 30.seconds.ago..).count
+  rescue => e
+    Rails.logger.error "[Stream#active_users] #{e.class}: #{e.message}"
+    0
   end
 
   def safe_count_events_last_min
     Event.where("created_at >= ?", 1.minute.ago).count
+  rescue => e
+    Rails.logger.error "[Stream#visits_last_min] #{e.class}: #{e.message}"
+    0
   end
 
   def safe_top_clicks(limit = 5)
@@ -82,6 +74,9 @@ class StreamController < ApplicationController
                   .limit(limit)
                   .count
     result.map { |label, count| { label: (label || 'unknown'), count: count } }
+  rescue => e
+    Rails.logger.error "[Stream#top_clicks] #{e.class}: #{e.message}"
+    []
   end
 
   def safe_recent_events(limit = 25)
@@ -99,5 +94,8 @@ class StreamController < ApplicationController
         session_token: ev.session&.session_token
       }
     end
+  rescue => e
+    Rails.logger.error "[Stream#recent_events] #{e.class}: #{e.message}"
+    []
   end
 end
