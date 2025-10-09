@@ -66,8 +66,9 @@ class StreamController < ApplicationController
   end
 
   def safe_active_user_count
-    col = last_seen_column
-    Session.where("#{col} > ?", 30.seconds.ago).count
+    # col = last_seen_column
+    # Session.where("#{col} > ?", 30.seconds.ago).count
+    Session.where(last_seen_column => 30.seconds.ago..).count
   end
 
   def safe_count_events_last_min
