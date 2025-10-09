@@ -44,10 +44,15 @@ module AnalyticsBackend
     # ↓↓↓ ADD CORS CONFIGURATION RIGHT HERE ↓↓↓
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins '*'   # For development - restrict to your domain in production
-        resource '*',
+        origins 'https://portfolio-bay-nu-48.vercel.app/', 'https://pixel-tracker-eta.vercel.app/', 'http://localhost:3000', 'http://localhost:3006'
+        
+        resource '/track',
           headers: :any,
-          methods: [:get, :post, :options]
+          methods: [:post, :options]
+              
+        resource '/stream',
+          headers: :any,
+          methods: [:get, :options]
       end
     end
     # ↑↑↑ END OF CORS CONFIGURATION ↑↑↑

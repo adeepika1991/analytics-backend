@@ -1,0 +1,15 @@
+services:
+  - type: web
+    name: analytics-backend
+    env: ruby
+    buildCommand: bundle install && bundle exec rake db:migrate
+    startCommand: bundle exec puma -C config/puma.rb
+    envVars:
+      - key: DATABASE_URL
+        sync: false # we'll set this manually in Render dashboard
+      - key: RAILS_ENV
+        value: production
+      - key: RAILS_LOG_TO_STDOUT
+        value: true
+      - key: RAILS_SERVE_STATIC_FILES
+        value: true

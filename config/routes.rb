@@ -9,4 +9,6 @@ Rails.application.routes.draw do
   # root "posts#index"
   # Analytics tracking endpoint
   post "/track", to: "track#create"
+  # Streaming Endpoint
+  get '/stream', to: 'stream#index'
 end
