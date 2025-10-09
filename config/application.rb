@@ -44,7 +44,8 @@ module AnalyticsBackend
     # ↓↓↓ ADD CORS CONFIGURATION RIGHT HERE ↓↓↓
     config.middleware.insert_before 0, Rack::Cors do
       allow do
-        origins 'https://portfolio-bay-nu-48.vercel.app', 'https://pixel-tracker-eta.vercel.app', 'https://portfolio-analytics-theta.vercel.app', 'http://localhost:3000', 'http://localhost:3006'
+        origins 'https://portfolio-bay-nu-48.vercel.app', 'https://pixel-tracker-eta.vercel.app', 'https://portfolio-analytics-theta.vercel.app', 
+'http://localhost:3000', 'http://localhost:3006'
         
         resource '*',
         headers: :any,
