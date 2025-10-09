@@ -9,7 +9,7 @@ class StreamController < ApplicationController
     response.headers['Connection']     = 'keep-alive'
     response.headers['X-Accel-Buffering'] = 'no'
     # allow CORS for testing; production: restrict to dashboard origin
-    response.headers['Access-Control-Allow-Origin'] = '*'
+    # response.headers['Access-Control-Allow-Origin'] = '*'
 
     stream = response.stream
 
