@@ -2,6 +2,7 @@
 
 A lightweight **Rails API service** that powers your [Realtime Analytics Dashboard](https://portfolio-analytics-theta.vercel.app/) and [Live Portfolio](https://portfolio-bay-nu-48.vercel.app/).
 
+[Dashboard Repo](https://github.com/adeepika1991/analytics-dashboard)
 This backend receives and stores **tracking events** from the embedded `pixel.js` snippet and continuously streams **live analytics** to connected dashboards using **Server-Sent Events (SSE)**.
 
 ---
