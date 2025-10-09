@@ -14,4 +14,4 @@ test:
 
 production:
   <<: *default
-  prepared_statements: false # Disable only in production
+  prepared_statements: true # Disable only in production
