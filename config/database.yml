@@ -6,9 +6,12 @@ default: &default
 
 development:
   <<: *default
+  prepared_statements: true # Keep enabled for development
 
 test:
   <<: *default
+  prepared_statements: true # Keep enabled for test
 
 production:
   <<: *default
+  prepared_statements: false # Disable only in production
