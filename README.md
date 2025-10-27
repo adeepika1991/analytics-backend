@@ -108,7 +108,7 @@ The backend performs three main roles:
 
 ## 🌍 Live Services
 
-- **Portfolio:** [https://portfolio-bay-nu-48.vercel.app/](https://portfolio-bay-nu-48.vercel.app/)
+- **Portfolio:** [https://deepikaasokan.vercel.app/](https://deepikaasokan.vercel.app/)
 - **Dashboard:** [https://portfolio-analytics-theta.vercel.app/](https://portfolio-analytics-theta.vercel.app/)
 - **Backend:** Private Rails API (runs locally or deployed on port `4000`)
 
